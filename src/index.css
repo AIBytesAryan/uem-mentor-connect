@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* UEM Mentor Connect Design System - Light Blue College Theme */
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 220 20% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 20%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 220 20% 30%;
+
+    --muted: 210 15% 94%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 199 80% 94%;
+    --accent-foreground: 199 89% 35%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    
+    --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --card-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 20% 20%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 199 80% 94%;
+    --sidebar-accent-foreground: 199 89% 35%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 199 89% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .card-mentor {
+    @apply bg-card rounded-xl p-5 transition-all duration-200;
+    box-shadow: var(--card-shadow);
+  }
+  
+  .card-mentor:hover {
+    box-shadow: var(--card-shadow-hover);
+    @apply -translate-y-0.5;
+  }
+
+  .badge-domain {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-accent text-accent-foreground;
+  }
+
+  .badge-status {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-active {
+    @apply bg-emerald-100 text-emerald-700;
+  }
+
+  .badge-limited {
+    @apply bg-amber-100 text-amber-700;
+  }
+
+  .badge-placed {
+    @apply bg-primary/10 text-primary;
+  }
+
+  .filter-panel {
+    @apply bg-card rounded-xl p-4 sticky top-4;
+    box-shadow: var(--card-shadow);
+  }
+
+  .blur-backdrop {
+    @apply backdrop-blur-md bg-background/80;
+  }
+
+  .btn-linkedin {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0077B5] text-white text-sm font-medium hover:bg-[#006097] transition-colors;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
