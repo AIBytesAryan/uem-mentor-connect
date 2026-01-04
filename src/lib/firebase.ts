@@ -2,7 +2,8 @@
 // Note: In production, these would come from environment variables
 // For demo purposes, we're using localStorage to simulate Firebase
 
-export const ALLOWED_EMAIL_DOMAIN = "@uem.edu.in";
+export const ALLOWED_EMAIL_DOMAINS = ["@uem.edu.in", "@iem.edu.in"];
+
 
 export interface User {
   uid: string;
@@ -60,10 +61,11 @@ export function calculatePriorityScore(profile: Partial<SeniorProfile>): number 
   return score;
 }
 
-// Validate email domain
 export function isValidEmailDomain(email: string): boolean {
-  return email.toLowerCase().endsWith(ALLOWED_EMAIL_DOMAIN);
+  const lowerEmail = email.toLowerCase();
+  return ALLOWED_EMAIL_DOMAINS.some(domain => lowerEmail.endsWith(domain));
 }
+
 
 // Local storage keys
 const STORAGE_KEYS = {
@@ -78,7 +80,8 @@ export const auth = {
   
   signInWithEmail: async (email: string): Promise<{ user: User } | { error: string }> => {
     if (!isValidEmailDomain(email)) {
-      return { error: `Only ${ALLOWED_EMAIL_DOMAIN} emails are allowed` };
+      return { error: `Only ${ALLOWED_EMAIL_DOMAINS.join(' or ')} emails are allowed` };
+
     }
     
     const user: User = {
