@@ -97,14 +97,7 @@ export function Dashboard({ isBlurred = false, onBecomeAMentor, onViewProfile }:
       <div className="container mx-auto px-4 py-6">
         <div className="flex gap-6">
           {/* Mobile Filter Toggle */}
-          <Button
-            variant="outline"
-            size="icon"
-            className="lg:hidden fixed bottom-4 right-4 z-30 w-12 h-12 rounded-full shadow-lg"
-            onClick={() => setShowMobileFilters(!showMobileFilters)}
-          >
-            {showMobileFilters ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </Button>
+          
 
           {/* Filter Panel - Desktop */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
@@ -122,14 +115,27 @@ export function Dashboard({ isBlurred = false, onBecomeAMentor, onViewProfile }:
 
           {/* Main Content */}
           <main className="flex-1 min-w-0">
-            <div className="mb-6">
-              <h2 className="text-xl font-semibold text-foreground">
-                {filters.showFavoritesOnly ? 'My Favorite Mentors' : 'Available Mentors'}
-              </h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                {filteredMentors.length} mentor{filteredMentors.length !== 1 ? 's' : ''} found
-              </p>
-            </div>
+           <div className="mb-6 flex items-start justify-between gap-4">
+  <div>
+    <h2 className="text-xl font-semibold text-foreground">
+      {filters.showFavoritesOnly ? 'My Favorite Mentors' : 'Available Mentors'}
+    </h2>
+    <p className="text-sm text-muted-foreground mt-1">
+      {filteredMentors.length} mentor{filteredMentors.length !== 1 ? 's' : ''} found
+    </p>
+  </div>
+
+  {/* Mobile Filter Button – TOP RIGHT */}
+  <Button
+    variant="outline"
+    size="icon"
+    className="lg:hidden"
+    onClick={() => setShowMobileFilters(!showMobileFilters)}
+  >
+    {showMobileFilters ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+  </Button>
+</div>
+
             
             <MentorGrid 
               mentors={filteredMentors}
