@@ -50,10 +50,6 @@ export function Header({ onShowFavorites, onBecomeAMentor, onViewProfile }: Head
                 <p className="text-xs text-muted-foreground truncate">{user.email}</p>
               </div>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={onShowFavorites}>
-                <Star className="w-4 h-4 mr-2" />
-                My Favorites
-              </DropdownMenuItem>
               {seniorProfile ? (
                 <DropdownMenuItem onClick={onViewProfile}>
                   <User className="w-4 h-4 mr-2" />
