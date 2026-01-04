@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/contexts/AuthContext';
-import { ALLOWED_EMAIL_DOMAIN } from '@/lib/firebase';
+import { ALLOWED_EMAIL_DOMAINS } from '@/lib/firebase';
+
 
 interface LoginModalProps {
   onSuccess: () => void;
@@ -55,7 +56,8 @@ export function LoginModal({ onSuccess }: LoginModalProps) {
               <Input
                 id="email"
                 type="email"
-                placeholder={`your.name${ALLOWED_EMAIL_DOMAIN}`}
+                placeholder={`your.name${ALLOWED_EMAIL_DOMAINS[0]}`}
+
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="pl-10"
@@ -63,7 +65,8 @@ export function LoginModal({ onSuccess }: LoginModalProps) {
               />
             </div>
             <p className="text-xs text-muted-foreground">
-              Only {ALLOWED_EMAIL_DOMAIN} emails are allowed
+              Only {ALLOWED_EMAIL_DOMAINS.join(' or ')} emails are allowed
+
             </p>
           </div>
 
