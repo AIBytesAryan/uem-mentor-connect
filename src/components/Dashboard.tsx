@@ -96,9 +96,6 @@ export function Dashboard({ isBlurred = false, onBecomeAMentor, onViewProfile }:
       
       <div className="container mx-auto px-4 py-6">
         <div className="flex gap-6">
-          {/* Mobile Filter Toggle */}
-          
-
           {/* Filter Panel - Desktop */}
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <FilterPanel filters={filters} onFilterChange={setFilters} />
@@ -107,35 +104,43 @@ export function Dashboard({ isBlurred = false, onBecomeAMentor, onViewProfile }:
           {/* Filter Panel - Mobile */}
           {showMobileFilters && (
             <div className="lg:hidden fixed inset-0 z-20 bg-background/80 backdrop-blur-sm">
-              <div className="absolute bottom-20 left-4 right-4 max-h-[70vh] overflow-auto">
-                <FilterPanel filters={filters} onFilterChange={setFilters} />
+              <div className="absolute top-20 left-4 right-4 bottom-20 flex flex-col">
+                <div className="flex-1 overflow-auto">
+                  <FilterPanel filters={filters} onFilterChange={setFilters} />
+                </div>
+                <Button
+                  className="w-full mt-4 flex-shrink-0"
+                  onClick={() => setShowMobileFilters(false)}
+                >
+                  Done
+                </Button>
               </div>
             </div>
           )}
 
           {/* Main Content */}
           <main className="flex-1 min-w-0">
-           <div className="mb-6 flex items-start justify-between gap-4">
-  <div>
-    <h2 className="text-xl font-semibold text-foreground">
-      {filters.showFavoritesOnly ? 'My Favorite Mentors' : 'Available Mentors'}
-    </h2>
-    <p className="text-sm text-muted-foreground mt-1">
-      {filteredMentors.length} mentor{filteredMentors.length !== 1 ? 's' : ''} found
-    </p>
-  </div>
-
-  {/* Mobile Filter Button – TOP RIGHT */}
-  <Button
-    variant="outline"
-    size="icon"
-    className="lg:hidden"
-    onClick={() => setShowMobileFilters(!showMobileFilters)}
-  >
-    {showMobileFilters ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-  </Button>
-</div>
-
+            <div className="mb-6 flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-semibold text-foreground">
+                  {filters.showFavoritesOnly ? 'My Favorite Mentors' : 'Available Mentors'}
+                </h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  {filteredMentors.length} mentor{filteredMentors.length !== 1 ? 's' : ''} found
+                </p>
+              </div>
+              
+              {/* Mobile Filter Toggle */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="lg:hidden flex items-center gap-2"
+                onClick={() => setShowMobileFilters(!showMobileFilters)}
+              >
+                <Menu className="w-4 h-4" />
+                Filters
+              </Button>
+            </div>
             
             <MentorGrid 
               mentors={filteredMentors}
